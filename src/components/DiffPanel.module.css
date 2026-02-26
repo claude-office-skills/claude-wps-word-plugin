@@ -1,0 +1,105 @@
+.wrapper {
+  margin: 6px 0;
+  border: 1px solid rgba(99, 179, 237, 0.3);
+  border-radius: 8px;
+  background: rgba(99, 179, 237, 0.06);
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: rgba(99, 179, 237, 0.1);
+  border-bottom: 1px solid rgba(99, 179, 237, 0.15);
+}
+
+.icon {
+  font-size: 14px;
+}
+
+.title {
+  font-weight: 600;
+  color: #63b3ed;
+}
+
+.sheet {
+  margin-left: auto;
+  color: #888;
+  font-size: 11px;
+}
+
+.table {
+  padding: 4px 0;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr;
+  gap: 4px;
+  padding: 4px 10px;
+  color: #888;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr;
+  gap: 4px;
+  padding: 3px 10px;
+  transition: background 0.15s;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.colCell {
+  color: #a0aec0;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.colBefore,
+.colAfter {
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.removed {
+  color: #fc8181;
+  background: rgba(252, 129, 129, 0.1);
+  text-decoration: line-through;
+}
+
+.added {
+  color: #68d391;
+  background: rgba(104, 211, 145, 0.1);
+}
+
+.toggleBtn {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  border: none;
+  background: rgba(99, 179, 237, 0.08);
+  color: #63b3ed;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-top: 1px solid rgba(99, 179, 237, 0.12);
+}
+
+.toggleBtn:hover {
+  background: rgba(99, 179, 237, 0.15);
+}

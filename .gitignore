@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+_dist_stage/
+*.tar.gz
+
+# Logs
+logs/
+*.log
+debug-*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment (may contain secrets)
+.env
+.env.local
+.env.*.local
+
+# Local session data
+.chat-history/
+
+# HTTPS certificates (local dev)
+certs/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.local
+
+# OS files
+Thumbs.db

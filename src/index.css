@@ -1,0 +1,19 @@
+/* 引入 Google Fonts（如有网络） */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Oswald:wght@600&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #1a1a1a;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}

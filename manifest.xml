@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:type="TaskPaneApp">
+
+  <Id>claude-wps-word-plugin-001</Id>
+  <Version>1.0.0</Version>
+  <ProviderName>Claude AI</ProviderName>
+  <DefaultLocale>zh-CN</DefaultLocale>
+  <DisplayName DefaultValue="Claude for Writer" />
+  <Description DefaultValue="AI 驱动的文档写作助手，通过自然语言编辑和生成文档内容" />
+
+  <Hosts>
+    <Host Name="Document" />
+  </Hosts>
+
+  <DefaultSettings>
+    <SourceLocation DefaultValue="http://localhost:5175/index.html" />
+  </DefaultSettings>
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title" />
+            <Description resid="GetStarted.Description" />
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl" />
+          </GetStarted>
+          <FunctionFile resid="Commands.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="CommandsGroup">
+                <Label resid="CommandsGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="OpenTaskPane">
+                  <Label resid="OpenTaskPane.Label" />
+                  <Supertip>
+                    <Title resid="OpenTaskPane.Label" />
+                    <Description resid="OpenTaskPane.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+          <ExtensionPoint xsi:type="TaskPane">
+            <SourceLocation resid="Taskpane.Url" />
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="http://localhost:5175/assets/icon-16.png" />
+        <bt:Image id="Icon.32x32" DefaultValue="http://localhost:5175/assets/icon-32.png" />
+        <bt:Image id="Icon.80x80" DefaultValue="http://localhost:5175/assets/icon-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="http://localhost:5175" />
+        <bt:Url id="Commands.Url" DefaultValue="http://localhost:5175/commands.html" />
+        <bt:Url id="Taskpane.Url" DefaultValue="http://localhost:5175/index.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="Claude for Writer 已就绪" />
+        <bt:String id="CommandsGroup.Label" DefaultValue="Claude AI" />
+        <bt:String id="OpenTaskPane.Label" DefaultValue="打开 Claude" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="通过自然语言编辑和生成文档内容" />
+        <bt:String id="OpenTaskPane.Tooltip" DefaultValue="打开 Claude AI 助手，用自然语言编辑文档、生成内容、翻译校对" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

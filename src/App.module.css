@@ -1,0 +1,408 @@
+/* Task Pane 整体容器 */
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  height: 52px;
+  background: #212121;
+  flex-shrink: 0;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoName {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+}
+
+.betaBadge {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #999;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 1px 6px;
+  line-height: 1.4;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.headerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.headerBtn:hover {
+  color: #fff;
+  background: #333;
+}
+
+/* 选区上下文条 */
+.ctxBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  height: 32px;
+  background: #2d2d2d;
+  color: #777;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.ctxText {
+  font-size: 11px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ctxPinBtn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: #D97757;
+  background: transparent;
+  border: 1px solid #D9775740;
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.ctxPinBtn:hover {
+  background: #D9775715;
+  border-color: #D97757;
+}
+
+.ctxBadge {
+  font-size: 10px;
+  color: #D97757;
+  background: #1a1a1a;
+  border-radius: 6px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+
+/* (old pinnedTag removed — now uses inlineChip) */
+
+/* API Key 警告 */
+.warning {
+  background: #2d1a0e;
+  color: #D97757;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-bottom: 1px solid #D9775720;
+  flex-shrink: 0;
+}
+
+/* 消息滚动区 */
+.chatArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chatArea::-webkit-scrollbar {
+  width: 3px;
+}
+
+.chatArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatArea::-webkit-scrollbar-thumb {
+  background: #3d3d3d;
+  border-radius: 2px;
+}
+
+/* 输入区 */
+.inputArea {
+  flex-shrink: 0;
+  padding: 8px 14px 10px;
+  background: #212121;
+  border-top: 1px solid #2d2d2d;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  background: #2d2d2d;
+  border-radius: 14px;
+  padding: 0;
+  position: relative;
+  border: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.inputBox:focus-within {
+  border-color: #D9775740;
+}
+
+.dragHandle {
+  height: 6px;
+  cursor: ns-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 14px 14px 0 0;
+  user-select: none;
+}
+
+.dragHandle:hover .dragDots,
+.dragHandle:active .dragDots {
+  opacity: 0.7;
+}
+
+.dragDots {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: #555;
+  opacity: 0.3;
+  transition: opacity 0.15s;
+}
+
+.inputBody {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 10px 6px 14px;
+  gap: 4px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.inputChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 56px;
+  overflow-y: auto;
+}
+
+.inputChips:empty {
+  display: none;
+}
+
+.inputChips::-webkit-scrollbar {
+  width: 2px;
+}
+.inputChips::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 2px;
+}
+
+.inlineTextarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.5;
+  min-height: 40px;
+  max-height: none;
+  padding: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.inlineTextarea::-webkit-scrollbar {
+  width: 3px;
+}
+.inlineTextarea::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 2px;
+}
+
+.inlineTextarea::placeholder {
+  color: #666;
+}
+
+.inlineTextarea:disabled {
+  opacity: 0.6;
+}
+
+.inputToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px 6px 14px;
+  gap: 6px;
+  flex-shrink: 0;
+  border-top: 1px solid #3a3a3a30;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Inline chips (inside input box) */
+.inlineChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px 2px 5px;
+  background: #1a2a20;
+  border: 1px solid #00d4aa40;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #00d4aa;
+  white-space: nowrap;
+  max-width: 180px;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.chipTable {
+  background: #1a2a20;
+  border-color: #00d4aa40;
+  color: #00d4aa;
+}
+
+.chipImage {
+  background: #1a1a2e;
+  border-color: #6366f140;
+  color: #a0a0f0;
+}
+
+.chipLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+}
+
+.chipRemove {
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.5;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0 1px;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.chipRemove:hover {
+  opacity: 1;
+}
+
+.chipThumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.chipFileIcon {
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.sendBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #D97757;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #0d0d0d;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.sendBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sendBtn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.stopBtn {
+  background: #ef4444;
+  color: #fff;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.stopBtn:hover {
+  opacity: 0.85;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0); }
+}
+
+/* (old attachedBar removed — chips are now inline in inputFlow) */

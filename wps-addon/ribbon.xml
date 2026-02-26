@@ -1,0 +1,20 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+  <ribbon startFromScratch="false">
+    <tabs>
+      <tab id="ClaudeAIWord" label="Claude AI">
+        <group id="ClaudeWordGroup" label="Claude AI">
+          <button id="WordOpenClaudePanel"
+                  label="打开 Claude"
+                  onAction="OnOpenClaudePanel"
+                  size="large"
+                  getImage="GetClaudeIcon" />
+          <button id="WordOpenDebugger"
+                  label="JS 调试器"
+                  onAction="OnOpenJSDebugger"
+                  size="large"
+                  getImage="GetDebugIcon" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

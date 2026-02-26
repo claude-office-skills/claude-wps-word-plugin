@@ -1,0 +1,71 @@
+.grid {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.gridExpanded {
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background: #2d2d2d;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.card:hover:not(:disabled) {
+  background: #3d3d3d;
+  transform: translateY(-1px);
+}
+
+.card:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.card:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cardIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.cardLabel {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 11px;
+  color: #e8e8e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.moreBtn {
+  background: transparent;
+  border: 1px dashed #555;
+}
+
+.moreBtn:hover:not(:disabled) {
+  background: #2d2d2d;
+  border-color: #777;
+}

@@ -1,0 +1,167 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.panel {
+  width: 280px;
+  height: 100%;
+  background: #1a1a1a;
+  border-left: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #2d2d2d;
+  flex-shrink: 0;
+}
+
+.panelTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.closeBtn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.closeBtn:hover {
+  color: #fff;
+  background: #333;
+}
+
+.sessionList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.sessionList::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sessionList::-webkit-scrollbar-thumb {
+  background: #3d3d3d;
+  border-radius: 2px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 16px;
+  color: #666;
+  font-size: 13px;
+}
+
+.emptyHint {
+  font-size: 11px;
+  color: #555;
+}
+
+.sessionItem {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #ccc;
+  transition: background 0.15s, border-color 0.15s;
+  display: block;
+}
+
+.sessionItem:hover {
+  background: #252525;
+  border-color: #333;
+}
+
+.sessionItem:hover .deleteBtn {
+  opacity: 1;
+}
+
+.sessionActive {
+  background: #252525;
+  border-color: #D9775740;
+}
+
+.sessionTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: #eee;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 24px;
+}
+
+.sessionMeta {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #666;
+}
+
+.sessionPreview {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
+}
+
+.deleteBtn:hover {
+  color: #ef4444;
+  background: #ef444420;
+}
