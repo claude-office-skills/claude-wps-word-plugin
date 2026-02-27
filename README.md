@@ -3,7 +3,7 @@
 WPS Office 文字处理 AI 助手——通过自然语言对话编写、润色和格式化文档，由 Claude API 驱动。
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Version](https://img.shields.io/badge/version-1.0.1-green)
+![Version](https://img.shields.io/badge/version-2.0.0--dev-orange)
 ![Platform](https://img.shields.io/badge/platform-WPS%20Office-red)
 
 ## 功能特性
