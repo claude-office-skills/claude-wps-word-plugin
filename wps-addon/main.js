@@ -22,17 +22,34 @@ function _dbg(loc, msg, data) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", PROXY_URL + "/wps-debug-log", false);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify({ sessionId: "5f320f", location: loc, message: msg, data: data || {}, timestamp: Date.now() }));
+    xhr.send(
+      JSON.stringify({
+        sessionId: "5f320f",
+        location: loc,
+        message: msg,
+        data: data || {},
+        timestamp: Date.now(),
+      }),
+    );
   } catch (e) {}
 }
-_dbg("main.js:load", "WPS Word addon loaded", { taskpaneUrl: TASKPANE_URL, proxyUrl: PROXY_URL, hasFetch: typeof fetch !== "undefined" });
+_dbg("main.js:load", "WPS Word addon loaded", {
+  taskpaneUrl: TASKPANE_URL,
+  proxyUrl: PROXY_URL,
+  hasFetch: typeof fetch !== "undefined",
+});
 // #endregion
 
 // ── Ribbon 按钮回调 ──────────────────────────────────────────
 
 function OnOpenClaudePanel() {
   // #region agent log
-  _dbg("main.js:OnOpenClaudePanel", "Button clicked", { wpsType: typeof wps, hasCreateTaskPane: typeof wps !== "undefined" && typeof wps.CreateTaskPane, hasCreateLower: typeof wps !== "undefined" && typeof wps.createTaskPane, hypothesisId: "H1,H3,H4" });
+  _dbg("main.js:OnOpenClaudePanel", "Button clicked", {
+    wpsType: typeof wps,
+    hasCreateTaskPane: typeof wps !== "undefined" && typeof wps.CreateTaskPane,
+    hasCreateLower: typeof wps !== "undefined" && typeof wps.createTaskPane,
+    hypothesisId: "H1,H3,H4",
+  });
   // #endregion
   try {
     var tsId = null;
@@ -41,7 +58,10 @@ function OnOpenClaudePanel() {
     } catch (e) {}
 
     // #region agent log
-    _dbg("main.js:OnOpenClaudePanel", "Existing taskpane check", { tsId: tsId, hypothesisId: "H3" });
+    _dbg("main.js:OnOpenClaudePanel", "Existing taskpane check", {
+      tsId: tsId,
+      hypothesisId: "H3",
+    });
     // #endregion
 
     if (tsId) {
@@ -51,21 +71,28 @@ function OnOpenClaudePanel() {
           existing.Visible = !existing.Visible;
           startBackgroundSync();
           // #region agent log
-          _dbg("main.js:OnOpenClaudePanel", "Toggled existing pane", { tsId: tsId, visible: existing.Visible });
+          _dbg("main.js:OnOpenClaudePanel", "Toggled existing pane", {
+            tsId: tsId,
+            visible: existing.Visible,
+          });
           // #endregion
           return;
         }
       } catch (e) {}
     }
 
-    var createFn = typeof wps.CreateTaskPane === "function"
-      ? wps.CreateTaskPane
-      : typeof wps.createTaskPane === "function"
-        ? wps.createTaskPane
-        : null;
+    var createFn =
+      typeof wps.CreateTaskPane === "function"
+        ? wps.CreateTaskPane
+        : typeof wps.createTaskPane === "function"
+          ? wps.createTaskPane
+          : null;
 
     // #region agent log
-    _dbg("main.js:OnOpenClaudePanel", "CreateTaskPane resolved", { hasFn: !!createFn, hypothesisId: "H3" });
+    _dbg("main.js:OnOpenClaudePanel", "CreateTaskPane resolved", {
+      hasFn: !!createFn,
+      hypothesisId: "H3",
+    });
     // #endregion
 
     if (!createFn) {
@@ -81,7 +108,12 @@ function OnOpenClaudePanel() {
     taskPane.Visible = true;
 
     // #region agent log
-    _dbg("main.js:OnOpenClaudePanel", "TaskPane created", { id: taskPane.ID, visible: taskPane.Visible, url: TASKPANE_URL, hypothesisId: "H3,H4" });
+    _dbg("main.js:OnOpenClaudePanel", "TaskPane created", {
+      id: taskPane.ID,
+      visible: taskPane.Visible,
+      url: TASKPANE_URL,
+      hypothesisId: "H3,H4",
+    });
     // #endregion
 
     try {
@@ -90,21 +122,32 @@ function OnOpenClaudePanel() {
     startBackgroundSync();
   } catch (e) {
     // #region agent log
-    _dbg("main.js:OnOpenClaudePanel", "EXCEPTION", { error: e.message, stack: String(e.stack || ""), hypothesisId: "H3,H4" });
+    _dbg("main.js:OnOpenClaudePanel", "EXCEPTION", {
+      error: e.message,
+      stack: String(e.stack || ""),
+      hypothesisId: "H3,H4",
+    });
     // #endregion
     alert(
-      "打开 Claude 面板失败：" + e.message +
-      "\n\n请确保开发服务器已启动：\ncd ~/需求讨论/claude-wps-word-plugin && npm run dev"
+      "打开 Claude 面板失败：" +
+        e.message +
+        "\n\n请确保开发服务器已启动：\ncd ~/需求讨论/claude-wps-word-plugin && npm run dev",
     );
   }
 }
 
 function OnOpenJSDebugger() {
   try {
-    if (typeof wps !== "undefined" && wps.PluginStorage &&
-        typeof wps.PluginStorage.openDebugger === "function") {
+    if (
+      typeof wps !== "undefined" &&
+      wps.PluginStorage &&
+      typeof wps.PluginStorage.openDebugger === "function"
+    ) {
       wps.PluginStorage.openDebugger();
-    } else if (typeof wps !== "undefined" && typeof wps.openDevTools === "function") {
+    } else if (
+      typeof wps !== "undefined" &&
+      typeof wps.openDevTools === "function"
+    ) {
       wps.openDevTools();
     } else {
       alert("JS 调试器在当前 WPS 版本下不可用。");
@@ -114,8 +157,12 @@ function OnOpenJSDebugger() {
   }
 }
 
-function GetClaudeIcon() { return "claude-icon.png"; }
-function GetDebugIcon() { return "debug-icon.png"; }
+function GetClaudeIcon() {
+  return "claude-icon.png";
+}
+function GetDebugIcon() {
+  return "debug-icon.png";
+}
 
 // ── 右键 "Add to Chat" ─────────────────────────────────────
 
@@ -133,7 +180,9 @@ function OnAddToChat() {
     var endPos = sel.End;
 
     var paraCount = 0;
-    try { paraCount = sel.Paragraphs.Count; } catch (e) {}
+    try {
+      paraCount = sel.Paragraphs.Count;
+    } catch (e) {}
 
     var styleName = "";
     try {
@@ -151,13 +200,15 @@ function OnAddToChat() {
       paragraphCount: paraCount,
       styleName: styleName,
       documentName: doc ? doc.Name : "",
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
 
     httpPost(PROXY_URL + "/add-to-chat", JSON.stringify(payload));
 
     var tsId = null;
-    try { tsId = wps.PluginStorage.getItem(TASKPANE_KEY); } catch (e) {}
+    try {
+      tsId = wps.PluginStorage.getItem(TASKPANE_KEY);
+    } catch (e) {}
     if (tsId) {
       try {
         var tp = wps.GetTaskPane(tsId);
@@ -175,7 +226,10 @@ function OnAddinLoad(ribbonUI) {
 
 window.ribbon_bindUI = function (bindUI) {
   // #region agent log
-  _dbg("main.js:ribbon_bindUI", "ribbon_bindUI called, about to bindUI", { hasBindUI: typeof bindUI === "function", hypothesisId: "H1" });
+  _dbg("main.js:ribbon_bindUI", "ribbon_bindUI called, about to bindUI", {
+    hasBindUI: typeof bindUI === "function",
+    hypothesisId: "H1",
+  });
   // #endregion
   try {
     bindUI({
@@ -189,7 +243,10 @@ window.ribbon_bindUI = function (bindUI) {
     // #endregion
   } catch (e) {
     // #region agent log
-    _dbg("main.js:ribbon_bindUI", "bindUI EXCEPTION", { error: e.message, hypothesisId: "H1" });
+    _dbg("main.js:ribbon_bindUI", "bindUI EXCEPTION", {
+      error: e.message,
+      hypothesisId: "H1",
+    });
     // #endregion
   }
 };
@@ -197,8 +254,16 @@ window.ribbon_bindUI = function (bindUI) {
 // ── 后台同步启动 ─────────────────────────────────────────────
 
 function startBackgroundSync() {
-  if (_ctxTimer) { try { clearInterval(_ctxTimer); } catch (e) {} }
-  if (_codePollTimer) { try { clearInterval(_codePollTimer); } catch (e) {} }
+  if (_ctxTimer) {
+    try {
+      clearInterval(_ctxTimer);
+    } catch (e) {}
+  }
+  if (_codePollTimer) {
+    try {
+      clearInterval(_codePollTimer);
+    } catch (e) {}
+  }
   _syncToken = "sync_" + Date.now();
   pushWpsContext();
   _ctxTimer = setInterval(pushWpsContext, CTX_INTERVAL);
@@ -223,7 +288,7 @@ function collectWriterContext() {
     paragraphCount: 0,
     selection: null,
     outline: [],
-    documentSummary: null
+    documentSummary: null,
   };
 
   try {
@@ -232,8 +297,12 @@ function collectWriterContext() {
 
     result.documentName = doc.Name || "";
 
-    try { result.paragraphCount = doc.Paragraphs.Count; } catch (e) {}
-    try { result.wordCount = doc.Words.Count; } catch (e) {}
+    try {
+      result.paragraphCount = doc.Paragraphs.Count;
+    } catch (e) {}
+    try {
+      result.wordCount = doc.Words.Count;
+    } catch (e) {}
     try {
       result.pageCount = doc.BuiltInDocumentProperties("Number of Pages").Value;
     } catch (e) {}
@@ -243,10 +312,14 @@ function collectWriterContext() {
       var sel = Application.Selection;
       if (sel) {
         var selText = "";
-        try { selText = sel.Text || ""; } catch (e) {}
+        try {
+          selText = sel.Text || "";
+        } catch (e) {}
 
         var paraCount = 0;
-        try { paraCount = sel.Paragraphs.Count; } catch (e) {}
+        try {
+          paraCount = sel.Paragraphs.Count;
+        } catch (e) {}
 
         var styleName = "";
         try {
@@ -277,9 +350,14 @@ function collectWriterContext() {
           end: sel.End,
           paragraphCount: paraCount,
           styleName: styleName,
-          font: { name: fontName, size: fontSize, bold: isBold, italic: isItalic },
+          font: {
+            name: fontName,
+            size: fontSize,
+            bold: isBold,
+            italic: isItalic,
+          },
           surroundingText: surrounding,
-          hasSelection: selText.length > 1
+          hasSelection: selText.length > 1,
         };
       }
     } catch (e) {}
@@ -292,16 +370,19 @@ function collectWriterContext() {
     // 文档摘要（表格数等基本信息）
     try {
       var tableCount = 0;
-      try { tableCount = doc.Tables.Count; } catch (e) {}
+      try {
+        tableCount = doc.Tables.Count;
+      } catch (e) {}
       var sectionCount = 0;
-      try { sectionCount = doc.Sections.Count; } catch (e) {}
+      try {
+        sectionCount = doc.Sections.Count;
+      } catch (e) {}
 
       result.documentSummary = {
         tableCount: tableCount,
-        sectionCount: sectionCount
+        sectionCount: sectionCount,
       };
     } catch (e) {}
-
   } catch (e) {}
 
   return result;
@@ -322,7 +403,9 @@ function getHeadingsOutline(doc) {
         var styleName = "";
         try {
           styleName = para.Style.NameLocal || para.Style.Name || "";
-        } catch (e) { continue; }
+        } catch (e) {
+          continue;
+        }
 
         var level = -1;
         if (/^(标题|Heading)\s*1/i.test(styleName)) level = 1;
@@ -332,7 +415,9 @@ function getHeadingsOutline(doc) {
 
         if (level > 0) {
           var text = "";
-          try { text = para.Range.Text || ""; } catch (e) {}
+          try {
+            text = para.Range.Text || "";
+          } catch (e) {}
           text = text.replace(/[\r\n]+/g, "").trim();
           if (text.length > 0) {
             headings.push({ level: level, text: text.substring(0, 120) });
@@ -378,9 +463,15 @@ function getSurroundingParagraphs(sel, n) {
       }
 
       var lastSelPara = selParaIdx;
-      try { lastSelPara = selParaIdx + sel.Paragraphs.Count - 1; } catch (e) {}
+      try {
+        lastSelPara = selParaIdx + sel.Paragraphs.Count - 1;
+      } catch (e) {}
 
-      for (var a = lastSelPara + 1; a <= Math.min(totalParas, lastSelPara + n); a++) {
+      for (
+        var a = lastSelPara + 1;
+        a <= Math.min(totalParas, lastSelPara + n);
+        a++
+      ) {
         try {
           var aText = doc.Paragraphs.Item(a).Range.Text || "";
           aText = aText.replace(/[\r\n]+$/, "").trim();
@@ -413,7 +504,9 @@ function snapshotDocument() {
     } catch (e) {}
 
     var totalParas = 0;
-    try { totalParas = doc.Paragraphs.Count; } catch (e) {}
+    try {
+      totalParas = doc.Paragraphs.Count;
+    } catch (e) {}
 
     var paragraphTexts = [];
     var limit = Math.min(totalParas, 100);
@@ -432,7 +525,7 @@ function snapshotDocument() {
       selectionText: selText.substring(0, 2000),
       selectionStart: selStart,
       selectionEnd: selEnd,
-      paragraphTexts: paragraphTexts
+      paragraphTexts: paragraphTexts,
     };
   } catch (e) {
     return null;
@@ -446,16 +539,20 @@ function computeDiff(before, after) {
   if (!before || !after) return null;
 
   var changes = [];
-  var maxParas = Math.max(before.paragraphTexts.length, after.paragraphTexts.length);
+  var maxParas = Math.max(
+    before.paragraphTexts.length,
+    after.paragraphTexts.length,
+  );
 
   for (var i = 0; i < maxParas; i++) {
-    var bText = i < before.paragraphTexts.length ? before.paragraphTexts[i] : "";
+    var bText =
+      i < before.paragraphTexts.length ? before.paragraphTexts[i] : "";
     var aText = i < after.paragraphTexts.length ? after.paragraphTexts[i] : "";
     if (bText !== aText) {
       changes.push({
         paragraph: i + 1,
         before: bText.substring(0, 300),
-        after: aText.substring(0, 300)
+        after: aText.substring(0, 300),
       });
     }
   }
@@ -467,7 +564,7 @@ function computeDiff(before, after) {
     changeCount: changes.length,
     addedParagraphs: addedParas,
     changes: changes.slice(0, 50),
-    hasMore: changes.length > 50
+    hasMore: changes.length > 50,
   };
 }
 
@@ -488,11 +585,15 @@ function pollAndExecuteCode() {
       var afterSnap = snapshotDocument();
       var diff = computeDiff(beforeSnap, afterSnap);
 
-      httpPost(PROXY_URL + "/code-result",
-        JSON.stringify({ id: id, result: execResult, diff: diff }));
+      httpPost(
+        PROXY_URL + "/code-result",
+        JSON.stringify({ id: id, result: execResult, diff: diff }),
+      );
     } catch (execErr) {
-      httpPost(PROXY_URL + "/code-result",
-        JSON.stringify({ id: id, error: execErr.message || String(execErr) }));
+      httpPost(
+        PROXY_URL + "/code-result",
+        JSON.stringify({ id: id, error: execErr.message || String(execErr) }),
+      );
     }
   } catch (e) {}
 }
@@ -512,7 +613,9 @@ function httpPost(url, body) {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(body);
     return xhr.responseText;
-  } catch (e) { return null; }
+  } catch (e) {
+    return null;
+  }
 }
 
 function httpGet(url) {
@@ -521,5 +624,7 @@ function httpGet(url) {
     xhr.open("GET", url, false);
     xhr.send();
     return xhr.responseText;
-  } catch (e) { return null; }
+  } catch (e) {
+    return null;
+  }
 }

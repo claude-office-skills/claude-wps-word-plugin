@@ -3,7 +3,7 @@
 WPS Office 文字处理 AI 助手——通过自然语言对话编写、润色和格式化文档，由 Claude API 驱动。
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Version](https://img.shields.io/badge/version-1.0.0-green)
+![Version](https://img.shields.io/badge/version-1.0.1-green)
 ![Platform](https://img.shields.io/badge/platform-WPS%20Office-red)
 
 ## 功能特性
@@ -91,6 +91,23 @@ chmod +x install-to-wps.sh
 | Excel | 3001 | 5173 |
 | PPT | 3002 | 5174 |
 | **Word** | **3003** | **5175** |
+
+## 版本日志
+
+### v1.0.1 (2026-02-27) — Ribbon 图标修复
+
+**修复**
+- Ribbon 图标从 SVG URL 改为 PNG 本地文件引用，提升兼容性
+
+### v1.0.0 (2026-02-26) — 初始版本
+
+**核心功能**
+- 基于 Excel/PPT 插件架构开发的四层架构
+- WPS 加载项注册（publish.xml + authaddin.json）
+- Ribbon 集成 Claude AI 标签页
+- 上下文同步：定时采集文档标题、段落文本、选区内容
+- 代码执行桥 + 流式响应 + 3 种交互模式
+- 端口隔离：Proxy 3003 / Vite 5175
 
 ## 相关项目
 
